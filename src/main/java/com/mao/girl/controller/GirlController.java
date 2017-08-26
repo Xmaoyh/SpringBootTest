@@ -5,12 +5,15 @@ import com.mao.girl.repository.GirlRepository;
 import com.mao.girl.service.GirlService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
+import javax.validation.Valid;
 
 @RestController
 public class GirlController {
@@ -39,6 +42,22 @@ public class GirlController {
         Girl girl = new Girl();
         girl.setAge(age);
         girl.setCupSize(cupSize);
+        return mGirlRepository.save(girl);
+    }
+
+    /**
+     * 增加一个女生
+     * 直接只用对象
+     * @return
+     */
+    @PostMapping("/addGirls")
+    public Girl addGirl(@Valid Girl girl, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+            return null;
+        }
+        girl.setAge(girl.getAge());
+        girl.setCupSize(girl.getCupSize());
         return mGirlRepository.save(girl);
     }
 
