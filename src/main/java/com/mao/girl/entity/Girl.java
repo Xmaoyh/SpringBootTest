@@ -1,4 +1,4 @@
-package com.mao.girl;
+package com.mao.girl.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

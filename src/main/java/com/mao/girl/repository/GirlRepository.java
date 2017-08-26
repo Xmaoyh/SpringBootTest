@@ -1,4 +1,6 @@
-package com.mao.girl;
+package com.mao.girl.repository;
+
+import com.mao.girl.entity.Girl;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

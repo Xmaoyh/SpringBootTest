@@ -1,4 +1,7 @@
-package com.mao.girl;
+package com.mao.girl.service;
+
+import com.mao.girl.entity.Girl;
+import com.mao.girl.repository.GirlRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
