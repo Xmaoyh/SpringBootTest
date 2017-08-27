@@ -6,6 +6,9 @@ import com.mao.girl.repository.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * 操作数据库逻辑
+ */
 @Service
 public class GirlService {
     @Autowired
@@ -21,5 +24,14 @@ public class GirlService {
         girlB.setAge(11);
         girlB.setCupSize("A");
         mGirlRepository.save(girlB);
+    }
+
+    public void getAge(int id) throws Exception{
+        Girl girl = mGirlRepository.findOne(id);
+        if(girl.getAge() < 20){
+            throw new Exception("小于20岁，你太小了");
+        }else{
+            throw new Exception("大于20岁，你来吧");
+        }
     }
 }

@@ -1,12 +1,15 @@
 package com.mao.girl.controller;
 
 import com.mao.girl.entity.Girl;
+import com.mao.girl.entity.Result;
 import com.mao.girl.repository.GirlRepository;
 import com.mao.girl.service.GirlService;
+import com.mao.girl.utils.ResultUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,17 +51,17 @@ public class GirlController {
     /**
      * 增加一个女生
      * 直接只用对象
+     *
      * @return
      */
     @PostMapping("/addGirls")
-    public Girl addGirl(@Valid Girl girl, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()){
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
-            return null;
+    public Result<Girl> addGirl(@Valid Girl girl, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
         }
         girl.setAge(girl.getAge());
         girl.setCupSize(girl.getCupSize());
-        return mGirlRepository.save(girl);
+        return ResultUtil.success(mGirlRepository.save(girl));
     }
 
     /**
@@ -82,7 +85,9 @@ public class GirlController {
         return mGirlRepository.findByAge(age);
     }
 
-    /**删除ById
+    /**
+     * 删除ById
+     *
      * @param id
      */
     @GetMapping("deleteGirl")
@@ -90,11 +95,18 @@ public class GirlController {
         mGirlRepository.delete(id);
     }
 
-    /**删除ByAge
+    /**
+     * 删除ByAge
+     *
      * @param age
      */
     @GetMapping("deleteGirlByAge")
     public void deleteGirlByAge(@RequestParam("age") int age) {
         mGirlRepository.deleteByAge(age);
+    }
+
+    @GetMapping("/getAge/{id}")
+    public void getAge(@PathVariable("id") int id) throws Exception{
+        mGirlService.getAge(id);
     }
 }
