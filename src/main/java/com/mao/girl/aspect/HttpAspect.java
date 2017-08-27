@@ -4,6 +4,8 @@ import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Component;
 @Component
 class HttpAspect {
 
+    private final static Logger logger = LoggerFactory.getLogger(HttpAspect.class.getName());
+
     /**
      * 公用方法
      */
@@ -23,11 +27,11 @@ class HttpAspect {
 
     @Before("log()")
     public void doBefore() {
-        System.out.println("11111111");
+        logger.info("11111111");
     }
 
     @After("log()")
     public void doAfter() {
-        System.out.println("22222222");
+        logger.info("22222222");
     }
 }
