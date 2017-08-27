@@ -109,4 +109,9 @@ public class GirlController {
     public void getAge(@PathVariable("id") int id) throws Exception{
         mGirlService.getAge(id);
     }
+
+    public Girl findOne(int id){
+        return mGirlRepository.findOne(id);
+    }
+
 }

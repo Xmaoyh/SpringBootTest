@@ -36,4 +36,8 @@ public class GirlService {
             throw new GirlException(ResultCodeEnum.UPER_20);
         }
     }
+
+    public Girl findOne(int id){
+        return mGirlRepository.findOne(id);
+    }
 }
