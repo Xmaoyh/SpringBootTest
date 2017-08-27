@@ -2,6 +2,7 @@ package com.mao.girl.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -51,4 +52,10 @@ class HttpAspect {
     public void doAfter() {
         logger.info("22222222");
     }
+
+    @AfterReturning(returning = "obj", pointcut = "log()")
+    public void doAfterReturning(Object obj) {
+        logger.info("response={}", obj.toString());
+    }
+
 }
