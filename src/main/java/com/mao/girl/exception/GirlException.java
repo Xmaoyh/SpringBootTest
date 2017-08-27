@@ -1,5 +1,7 @@
 package com.mao.girl.exception;
 
+import com.mao.girl.enums.ResultCodeEnum;
+
 /**RuntimeException可以进行事务回滚
  * Created by MaoYiHan on 2017/8/27.
  */
@@ -7,9 +9,9 @@ package com.mao.girl.exception;
 public class GirlException extends RuntimeException{
     private int code;
 
-    public GirlException( int code,String message) {
-        super(message);
-        this.code = code;
+    public GirlException(ResultCodeEnum resultCodeEnum) {
+        super(resultCodeEnum.getMsg());
+        this.code = resultCodeEnum.getCode();
     }
 
     public int getCode() {

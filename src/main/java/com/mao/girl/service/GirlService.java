@@ -1,6 +1,7 @@
 package com.mao.girl.service;
 
 import com.mao.girl.entity.Girl;
+import com.mao.girl.enums.ResultCodeEnum;
 import com.mao.girl.exception.GirlException;
 import com.mao.girl.repository.GirlRepository;
 
@@ -30,9 +31,9 @@ public class GirlService {
     public void getAge(int id) throws Exception{
         Girl girl = mGirlRepository.findOne(id);
         if(girl.getAge() < 20){
-            throw new GirlException(18,"小于20岁，你太小了");
+            throw new GirlException(ResultCodeEnum.UNDER_20);
         }else{
-            throw new GirlException(21,"大于20岁，你来吧");
+            throw new GirlException(ResultCodeEnum.UPER_20);
         }
     }
 }
